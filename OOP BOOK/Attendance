@@ -1,0 +1,124 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Attendance extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField userlogin;
+	private JPasswordField password;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Attendance frame = new Attendance();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Attendance() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 238, 259);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel Userlogin = new JLabel("User:");
+		Userlogin.setBounds(39, 39, 32, 30);
+		contentPane.add(Userlogin);
+		
+		JLabel Password = new JLabel("Password:");
+		Password.setBounds(24, 80, 63, 14);
+		contentPane.add(Password);
+		
+		userlogin = new JTextField();
+		userlogin.setBounds(81, 44, 102, 20);
+		contentPane.add(userlogin);
+		userlogin.setColumns(10);
+		
+		password = new JPasswordField();
+		password.setBounds(81, 77, 102, 20);
+		contentPane.add(password);
+		
+		JRadioButton admin = new JRadioButton("Admin");
+		admin.setBounds(39, 109, 109, 23);
+		contentPane.add(admin);
+		
+		JRadioButton librarian = new JRadioButton("Librarian");
+		librarian.setBounds(39, 136, 109, 23);
+		contentPane.add(librarian);
+		
+		JLabel Userlogin_2 = new JLabel("Library Rental");
+		Userlogin_2.setHorizontalAlignment(SwingConstants.CENTER);
+		Userlogin_2.setBounds(39, 11, 144, 14);
+		contentPane.add(Userlogin_2);
+		
+		JButton exit = new JButton("Exit");
+		exit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+			
+		});
+		exit.setBounds(10, 166, 89, 23);
+		contentPane.add(exit);
+		
+		JButton login = new JButton("Log in");
+		login.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        String loginuser = userlogin.getText().trim();
+		        char[] passwordChars = password.getPassword();
+		        String passworduser = new String(passwordChars).trim();
+		        if (loginuser.equals("") || passworduser.equals("")) {
+		            JOptionPane.showMessageDialog(contentPane, "No fields filled.", "Error", JOptionPane.ERROR_MESSAGE);
+		            return;
+		        } 
+		        
+		        if (admin.isSelected()) {
+		            if (loginuser.equals("kaz") && passworduser.equals("miller") || 
+		                loginuser.equals("xan") && passworduser.equals("vongo") || 
+		                loginuser.equals("red") && passworduser.equals("hood")) {
+		                JOptionPane.showMessageDialog(contentPane, "Successfully Logged In as Admin.", "Success", JOptionPane.INFORMATION_MESSAGE);
+		                admin librarianFrame = new admin(); 
+	                    librarianFrame.setVisible(true); 
+		                dispose();
+		            } else {
+		            	JOptionPane.showMessageDialog(contentPane, "Invalid username or password for Admin.", "Error", JOptionPane.ERROR_MESSAGE);
+		            }
+		        } else if (librarian.isSelected()) {  	
+		        	if (loginuser.equals("kaz") && passworduser.equals("miller") || 
+		        	        loginuser.equals("xan") && passworduser.equals("vongo") || 
+		        	        loginuser.equals("red") && passworduser.equals("hood")) {
+		        	        JOptionPane.showMessageDialog(contentPane, "Successfully Logged In as Admin.", "Success", JOptionPane.INFORMATION_MESSAGE);
+		        	        dispose();
+		        	    }
+		        	}
+		}});
+		login.setBounds(113, 166, 89, 23);
+		contentPane.add(login);
+	}
+}
