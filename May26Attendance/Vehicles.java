@@ -26,5 +26,10 @@ public class Vehicles {
 	
 	void Stop() {
 		System.out.print("Stopped and ");  // Print a message indicating that the vehicle has stopped
+		
+	}
+	
+	void breaker() {
+		System.out.print("+====================================================================+");  // Print a message indicating a breaker between vehicle
 	}
 }
