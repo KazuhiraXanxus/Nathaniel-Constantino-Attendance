@@ -26,6 +26,6 @@ public class Car extends Vehicles {
 	}
 	
 	void Stop() {
-		System.out.println("hit the brakes at nag milly rock");  // Print a message indicating hitting the brakes in a specific manner
+		System.out.println("got out");  // Print a message indicating hitting the brakes in a specific manner
 	}
 }
